@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-toolbar class="toolbar">
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Kirala.com</v-toolbar-title>
       <v-spacer></v-spacer>
       <div class="toolbar-buttons">
@@ -10,6 +10,40 @@
         <v-btn text>Giris Yap</v-btn>
       </div>
     </v-toolbar>
+    <v-navigation-drawer
+      v-model="drawer"
+      class="pt-16"
+      absolute
+      bottom
+      temporary
+    >
+      <v-list nav>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-title>Rezervasyon Talepleri</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Kiralanan Araclar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Tum Araclar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Yeni Arac Kaydi</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Kullanici Kaydi</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <Nuxt />
     </v-main>
@@ -53,6 +87,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 50;
 }
 
 .toolbar-buttons {
