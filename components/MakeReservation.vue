@@ -9,74 +9,39 @@
         <v-col>
           <h1>Arac Ismi</h1>
           <v-list dense height="220">
-            <v-list-item>Model Yili:</v-list-item>
-            <v-list-item>Plaka:</v-list-item>
-            <v-list-item>Sase No:</v-list-item>
-            <v-list-item>Km:</v-list-item>
-            <v-list-item>Gunluk sinir Km:</v-list-item>
+            <v-list-item>Model Yili: {{ item.modelYili }}</v-list-item>
+            <v-list-item>Plaka: {{ item.plaka }}</v-list-item>
+            <v-list-item>Sase No: {{ item.saseNo }}</v-list-item>
+            <v-list-item>Km: {{ item.km }}</v-list-item>
           </v-list>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <h1>Kisisel Bilgiler</h1>
           <v-list-item
             ><v-text-field
-              :error-messages="errors"
-              label="Ad Soyad"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
-              label="TC Kimlik No"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
-              label="Telefon"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
-              label="E-Posta"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
-              label="Adres"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
-              label="Sehir"
-              required
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            ><v-text-field
-              :error-messages="errors"
+              v-model="baslangic"
               label="Alis Tarihi"
               required
             ></v-text-field
           ></v-list-item>
           <v-list-item
             ><v-text-field
-              :error-messages="errors"
+              v-model="bitis"
               label="Iade Tarihi"
               required
             ></v-text-field
           ></v-list-item>
-          <v-btn color="error" class="mt-5 mx-auto" dark v-bind="attrs" v-on="on"> Rezervasyon Talebi Olustur </v-btn>
+          <v-btn
+            color="error"
+            class="mt-5 mx-auto"
+            dark
+            v-bind="attrs"
+            v-on="on"
+            @click="makeNewReservation"
+          >
+            Rezervasyon Talebi Olustur
+          </v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -84,9 +49,34 @@
 </template>
 <script>
 export default {
+  props: {
+    item: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
+      baslangic: '',
+      bitis: '',
       dialog: false,
+    }
+  },
+  methods: {
+    async makeNewReservation() {
+      const reservation = {
+        userId: localStorage.getItem('userId'),
+        vehicleId: this.item.id,
+        rezervasyonBaslangicTarihi: this.baslangic,
+        rezervasyonBitisTarihi: this.bitis
+      }
+
+      try {
+        const returnedData = await this.$axios.$post('http://localhost:3000/reservations/', reservation)
+        console.log(returnedData)
+      } catch (error) {
+        this.showError = true
+      }
     }
   },
 }

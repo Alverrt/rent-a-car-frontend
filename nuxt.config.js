@@ -41,6 +41,9 @@ export default {
     '@nuxtjs/vuetify',
     '@nuxtjs/tailwindcss'
   ],
+  router: {
+    middleware: 'auth'
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

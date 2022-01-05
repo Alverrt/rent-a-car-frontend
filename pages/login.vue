@@ -6,8 +6,24 @@
         <v-text-field v-model="email" label="Email" required></v-text-field>
         <v-text-field v-model="password" label="Sifre" required></v-text-field>
       </div>
-      <v-btn class="login-button" depressed color="primary"> Giris </v-btn>
+      <v-btn class="login-button" depressed color="primary" @click="authUser"> Giris </v-btn>
     </div>
+    <v-snackbar
+      v-model="showError"
+    >
+      {{ errorMsg }}
+
+      <template #action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="showError = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 <script>
@@ -15,9 +31,34 @@ export default {
   data() {
     return {
       email: '',
-      pasword: '',
+      password: '',
+      showError: false,
+      errorMsg: 'Girdiginiz email ya da kullanici adi yanlis.'
     }
   },
+  methods: {
+    async authUser() {
+      const userAuthDto = {
+        email: this.email,
+        password: this.password
+      }
+      try {
+        const returnedData = await this.$axios.$post('http://localhost:3000/user/auth', userAuthDto)
+        localStorage.setItem('email', returnedData.email)
+        localStorage.setItem('userId', returnedData.id)
+        if (returnedData.email === 'admin') {
+          localStorage.setItem('access', 1)
+          this.$router.push('dashboard')
+        } else if (returnedData.email === 'maintainer') {
+          this.$router.push('dashboard')
+        } else {
+          this.$router.push('main')
+        }
+      } catch (error) {
+        this.showError = true
+      }
+    },
+  }
 }
 </script>
 <style scoped>

@@ -1,18 +1,45 @@
 <template>
   <div class="main-wrapper">
-    <v-card>
+    <h1 class="table-title">Rezervasyonlar</h1>
+    <v-card min-width="1200">
       <v-simple-table>
         <template #default>
           <thead>
             <tr>
-              <th class="text-left">Name</th>
-              <th class="text-left">Calories</th>
+              <th class="text-left">Arac Plakasi</th>
+              <th class="text-left">Musteri Ad Soyad</th>
+              <th class="text-left">Sehir</th>
+              <th class="text-left">Baslangic Tarihi</th>
+              <th class="text-left">Bitis Tarihi</th>
+              <th class="text-left">Aksiyon</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in desserts" :key="item.name">
-              <td>{{ item.name }}</td>
-              <td>{{ item.calories }}</td>
+            <tr v-for="(item, index) in reservations" :key="index">
+              <td><ReservationDetails /></td>
+              <td>{{ item.vehicle.plaka }}</td>
+              <td>{{ item.user.adSoyad }}</td>
+              <td>{{ item.user.sehir }}</td>
+              <td>{{ item.rezervasyonBaslangicTarihi }}</td>
+              <td>{{ item.rezervasyonBitisTarihi }}</td>
+              <td>
+                <v-btn
+                  class="mr-3"
+                  small
+                  depressed
+                  color="primary"
+                  @click="rentTheCar(index)"
+                >
+                  Onayla </v-btn
+                ><v-btn
+                  depressed
+                  small
+                  color="error"
+                  @click="deleteReservation(item.id)"
+                >
+                  Reddet
+                </v-btn>
+              </td>
             </tr>
           </tbody>
         </template>
@@ -21,60 +48,65 @@
   </div>
 </template>
 <script>
+import ReservationDetails from '~/components/ReservationDetails.vue'
 export default {
+  components: { ReservationDetails },
   data() {
     return {
       email: '',
       pasword: '',
-      desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-          },
-        ],
+      reservations: [],
     }
+  },
+  async created() {
+    this.reservations = await this.$axios.$get(
+      'http://localhost:3000/reservations/'
+    )
+    console.log(this.reservations)
+  },
+  methods: {
+    async rentTheCar(index) {
+      const rent = {
+        userId: this.reservations[index].user.id,
+        vehicleId: this.reservations[index].vehicle.id,
+        kiralamaTarihi: this.reservations[index].rezervasyonBaslangicTarihi,
+        bitisTarihi: this.reservations[index].rezervasyonBitisTarihi,
+      }
+
+      try {
+        const returnedData = await this.$axios.$post(
+          'http://localhost:3000/vehicle/rented',
+          rent
+        )
+        console.log(returnedData)
+      } catch (error) {
+        this.showError = true
+      }
+    },
+    async deleteReservation(reservationId) {
+      this.reservations = this.reservations.filter((item, index) => {
+        return item !== reservationId
+      })
+      const reservation = {
+        id: reservationId,
+      }
+      try {
+        const returnedData = await this.$axios.$post(
+          'http://localhost:3000/reservations/delete',
+          reservation
+        )
+        console.log(returnedData)
+      } catch (error) {
+        this.showError = true
+      }
+    },
   },
 }
 </script>
 <style scoped>
 .main-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -96,5 +128,10 @@ export default {
 
 .login-button {
   margin-top: 30px;
+}
+
+.table-title {
+  display: inline-block;
+  padding: 30px 0;
 }
 </style>

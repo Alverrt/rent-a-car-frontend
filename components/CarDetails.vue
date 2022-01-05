@@ -12,28 +12,25 @@
       </template>
     <v-card class="mx-auto px-10 py-10" outlined>
       <v-row>
-          <v-col><v-avatar color="secondary" size="200" tile></v-avatar></v-col>
+          <v-col><img src="~/assets/bg.jpeg" alt=""></v-col>
           <v-col>
               <v-list dense height="220">
-                  <v-list-item>Model Yili:</v-list-item>
-                  <v-list-item>Plaka:</v-list-item>
-                  <v-list-item>Sase No:</v-list-item>
-                  <v-list-item>Km:</v-list-item>
-                  <v-list-item>Gunluk sinir Km:</v-list-item>
+                  <v-list-item>Model: {{item.model}}</v-list-item>
+                  <v-list-item>Model Yili: {{item.modelYili}}</v-list-item>
+                  <v-list-item>Plaka: {{item.plaka}}</v-list-item>
+                  <v-list-item>Sase No: {{item.saseNo}}</v-list-item>
+                  <v-list-item>Km: {{item.km}}</v-list-item>
               </v-list>
               <v-list dense>
-                  <v-list-item >Motor Hacmi:</v-list-item>
-                  <v-list-item >Motor Gucu:</v-list-item>
-                  <v-list-item >Sanziman:</v-list-item>
-                  <v-list-item >Yakit Cinsi:</v-list-item>
+                  <v-list-item >Km Siniri: {{item.kmSinir}}</v-list-item>
+                  <v-list-item >Gerekli Ehliyet Yasi: {{item.gerekliEhliyetYasi}}</v-list-item>
+                  <v-list-item >Minimum Yas Siniri: {{item.minimumYasSiniri}}</v-list-item>
+                  <v-list-item >Airbag: {{item.airbag}}</v-list-item>
               </v-list>
               <v-list dense>
-                  <v-list-item >Koltuk Sayisi:</v-list-item>
-                  <v-list-item >Bagaj Hacmi:</v-list-item>
-                  <v-list-item >Airbag:</v-list-item>
-                  <v-list-item >Kapi Sayisi:</v-list-item>
-                  <v-list-item >Renk:</v-list-item>
-                  <v-list-item >Sunroof:</v-list-item>
+                  <v-list-item >Bagaj Hacmi: {{item.bagajHacmi}}</v-list-item>
+                  <v-list-item >Koltuk Sayisi: {{item.koltukSayisi}}</v-list-item>
+                  <v-list-item >Fiyati: {{item.fiyati}}</v-list-item>
               </v-list>
           </v-col>
       </v-row>
@@ -42,6 +39,12 @@
 </template>
 <script>
 export default {
+  props: {
+    item: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       dialog: false,

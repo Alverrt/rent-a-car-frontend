@@ -39,21 +39,23 @@
         </div>
       </div>
     </div>
-    <div class="car-cards">
-        <CarCard />
+    <div class="car-cards flex gap-5">
+      <CarCard v-for="(item, index) in cars" :key="index" :car-data="item" />
     </div>
   </div>
 </template>
 <script>
-import CarCard from "~/components/CarCard.vue"
+import CarCard from '~/components/CarCard.vue'
 export default {
-    components: { CarCard },
-    data() {
-        return {
-            email: "",
-            pasword: "",
-        };
+  components: { CarCard },
+  data() {
+    return {
+      cars: [],
     }
+  },
+  async created() {
+    this.cars = await this.$axios.$get('http://localhost:3000/vehicle/')
+  },
 }
 </script>
 <style scoped>
@@ -69,6 +71,7 @@ export default {
   flex-direction: column;
   border-radius: 13px;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
 }
 
 .form-inputs {
@@ -90,6 +93,6 @@ export default {
 }
 
 .car-cards {
-    padding: 30px;
+  padding: 30px;
 }
 </style>

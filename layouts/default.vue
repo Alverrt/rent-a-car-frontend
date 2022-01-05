@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app class="background-wrapper" dark>
     <v-toolbar class="toolbar">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Kirala.com</v-toolbar-title>
@@ -23,29 +23,29 @@
           active-class="deep-purple--text text--accent-4"
         >
           <v-list-item>
-            <v-list-item-title>Rezervasyon Talepleri</v-list-item-title>
+            <NuxtLink to="/reservations"><v-list-item-title>Rezervasyon Talepleri</v-list-item-title></NuxtLink>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Kiralanan Araclar</v-list-item-title>
+            <NuxtLink to="/rented"><v-list-item-title>Kiralanan Araclar</v-list-item-title></NuxtLink>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Tum Araclar</v-list-item-title>
+            <NuxtLink to="/cars"><v-list-item-title>Tum Araclar</v-list-item-title></NuxtLink>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Yeni Arac Kaydi</v-list-item-title>
+            <NuxtLink to="/new-car"><v-list-item-title>Yeni Arac Kaydi</v-list-item-title></NuxtLink>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Kullanici Kaydi</v-list-item-title>
+            <NuxtLink to="/users"><v-list-item-title>Kullanici Kaydi</v-list-item-title></NuxtLink>
           </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
     <v-main>
-      <Nuxt />
+      <div class="pt-20"><Nuxt /></div>
     </v-main>
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -82,6 +82,11 @@ export default {
 }
 </script>
 <style>
+.background-wrapper {
+  background: url('~/assets/bgg.jpeg') no-repeat center center !important;
+  background-size: cover!important;
+}
+
 .toolbar {
   position: absolute;
   top: 0;

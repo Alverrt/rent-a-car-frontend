@@ -1,13 +1,12 @@
 <template>
-  <div class="main-wrapper">
-    <div class="filter-panel">
-      <h1>Filtrele</h1>
+  <div class="login-wrapper">
+    <div class="login-panel">
+      <h1>Giris Yap</h1>
       <div class="form-inputs">
-        <v-text-field v-model="email" label="Alis Tarihi" required></v-text-field>
-        <v-text-field v-model="password" label="Iade Tarihi" required></v-text-field>
-        <v-text-field v-model="password" label="Sehir" required></v-text-field>
+        <v-text-field v-model="email" label="Email" required></v-text-field>
+        <v-text-field v-model="password" label="Sifre" required></v-text-field>
       </div>
-      <v-btn class="login-button" depressed color="primary"> Goster </v-btn>
+      <v-btn class="login-button" depressed color="primary"> Giris </v-btn>
     </div>
   </div>
 </template>
@@ -16,20 +15,21 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
+      pasword: '',
     }
   },
 }
 </script>
 <style scoped>
-.main-wrapper {
+.login-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
-.filter-panel {
+.login-panel {
   padding: 50px 30px;
   width: 320px;
   text-align: center;

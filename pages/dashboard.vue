@@ -11,48 +11,52 @@
 
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        contain
+        src="https://www.pngmart.com/files/4/Car-PNG-File.png"
       ></v-img>
 
-      <v-card-title>Kiralanan Araclar</v-card-title>
-
-      <v-card-text>
-
-        <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-
-        <div>
-          Small plates, salads & sandwiches - an intimate setting with 12 indoor
-          seats plus patio seating.
-        </div>
-      </v-card-text>
+      <v-card-title class="mx-auto">Kiralanan Araclar</v-card-title>
 
       <v-divider class="mx-4"></v-divider>
 
-      <v-card-title>Tonight's availability</v-card-title>
-
-      <v-card-text>
-        <v-chip-group
-          v-model="selection"
-          active-class="deep-purple accent-4 white--text"
-          column
-        >
-          <v-chip>5:30PM</v-chip>
-
-          <v-chip>7:30PM</v-chip>
-
-          <v-chip>8:00PM</v-chip>
-
-          <v-chip>9:00PM</v-chip>
-        </v-chip-group>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="reserve">
-          Reserve
+      <div class="my-4 text-center text-xl font-bold">TOPLAM ARAC SAYISI</div>
+      <div class="my-4 text-center text-xl font-bold">245</div>
+        <div class="flex justify-center items-center my-4">
+          <v-btn color="lighten-2" text @click="reserve">
+          Sayfaya Git
         </v-btn>
-      </v-card-actions>
+        </div>
+      
     </v-card>
-        <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+    <v-card :loading="loading" class="mx-auto my-12" max-width="374">
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
+
+      <v-img
+      contain
+        height="250"
+        src="https://www.pngmart.com/files/7/Envelope-Mail-PNG-Picture.png"
+      ></v-img>
+
+      <v-card-title class="mx-auto">Bekleyen Rezervasyonlar</v-card-title>
+
+      <v-divider class="mx-4"></v-divider>
+
+      <div class="my-4 text-center text-xl font-bold">TOPLAM REZERVASYON</div>
+      <div class="my-4 text-center text-xl font-bold">321</div>
+        <div class="flex justify-center items-center my-4">
+          <v-btn color="lighten-2" text @click="reserve">
+          Sayfaya Git
+        </v-btn>
+        </div>
+      
+    </v-card>
+    <v-card :loading="loading" class="mx-auto my-12" max-width="374">
       <template slot="progress">
         <v-progress-linear
           color="deep-purple"
@@ -63,98 +67,21 @@
 
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        src="https://cnycentral.com/resources/media/de18ac36-e349-40ab-97e6-e02ca7c50a1b-large16x9_Thereare200fewernewcarsatMatthewsAutoHyundaiofSyracusethannormalaccordingtothegeneralsalesmanager.PNG?1624568936049"
       ></v-img>
 
-      <v-card-title>Kiralanan Araclar</v-card-title>
-
-      <v-card-text>
-
-        <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-
-        <div>
-          Small plates, salads & sandwiches - an intimate setting with 12 indoor
-          seats plus patio seating.
-        </div>
-      </v-card-text>
+      <v-card-title class="mx-auto">Bütün Araclar</v-card-title>
 
       <v-divider class="mx-4"></v-divider>
 
-      <v-card-title>Tonight's availability</v-card-title>
-
-      <v-card-text>
-        <v-chip-group
-          v-model="selection"
-          active-class="deep-purple accent-4 white--text"
-          column
-        >
-          <v-chip>5:30PM</v-chip>
-
-          <v-chip>7:30PM</v-chip>
-
-          <v-chip>8:00PM</v-chip>
-
-          <v-chip>9:00PM</v-chip>
-        </v-chip-group>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="reserve">
-          Reserve
+      <div class="my-4 text-center text-xl font-bold">TOPLAM ARAC SAYISI</div>
+      <div class="my-4 text-center text-xl font-bold">245</div>
+        <div class="flex justify-center items-center my-4">
+          <v-btn color="lighten-2" text @click="reserve">
+          Sayfaya Git
         </v-btn>
-      </v-card-actions>
-    </v-card>
-        <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
-
-      <v-img
-        height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-      ></v-img>
-
-      <v-card-title>Kiralanan Araclar</v-card-title>
-
-      <v-card-text>
-
-        <div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-
-        <div>
-          Small plates, salads & sandwiches - an intimate setting with 12 indoor
-          seats plus patio seating.
         </div>
-      </v-card-text>
-
-      <v-divider class="mx-4"></v-divider>
-
-      <v-card-title>Tonight's availability</v-card-title>
-
-      <v-card-text>
-        <v-chip-group
-          v-model="selection"
-          active-class="deep-purple accent-4 white--text"
-          column
-        >
-          <v-chip>5:30PM</v-chip>
-
-          <v-chip>7:30PM</v-chip>
-
-          <v-chip>8:00PM</v-chip>
-
-          <v-chip>9:00PM</v-chip>
-        </v-chip-group>
-      </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="reserve">
-          Reserve
-        </v-btn>
-      </v-card-actions>
+      
     </v-card>
   </div>
 </template>
@@ -193,4 +120,5 @@ export default {
 .login-button {
   margin-top: 30px;
 }
+
 </style>
