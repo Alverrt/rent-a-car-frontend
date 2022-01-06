@@ -37,6 +37,7 @@ export default {
   flex-direction: column;
   border-radius: 13px;
   box-shadow: 0 0 20px 4px rgba(0, 0, 0, .3);
+  background: white;
 }
 
 .form-inputs {

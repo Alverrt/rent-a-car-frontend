@@ -1,44 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <div class="main-header-panel">
-      <div class="main-header-row">
-        <div class="main-header-cell">
-          <v-text-field v-model="email" label="Model" required></v-text-field>
-        </div>
-        <div class="main-header-cell">
-          <v-text-field
-            v-model="email"
-            label="Max Fiyat"
-            required
-          ></v-text-field>
-        </div>
-        <div class="main-header-cell">
-          <v-text-field v-model="email" label="Renk" required></v-text-field>
-        </div>
-      </div>
-      <div class="main-header-row">
-        <div class="main-header-cell">
-          <v-text-field
-            v-model="email"
-            label="Model Yili"
-            required
-          ></v-text-field>
-        </div>
-        <div class="main-header-cell">
-          <v-text-field
-            v-model="email"
-            label="Sanziman"
-            required
-          ></v-text-field>
-        </div>
-        <div class="main-header-cell">
-          <v-btn class="login-button" depressed color="primary">
-            Filtrele
-          </v-btn>
-          <v-btn class="login-button" depressed color="warning"> Reset </v-btn>
-        </div>
-      </div>
-    </div>
+
     <div class="car-cards flex gap-5">
       <CarCard v-for="(item, index) in cars" :key="index" :car-data="item" />
     </div>
